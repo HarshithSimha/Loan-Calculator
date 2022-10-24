@@ -22,4 +22,23 @@ function calculateResults(e) {
     const principal = parseFloat(amount.value);
     const calculatedInterest = parseFloat(interest.value) / 100 / 12;
     const calculatedPayments = parseFloat(years.value) * 12;
+    // Monthly Payments
+
+    const x = Math.pow(1+calculatedInterest, calculatedPayments);
+    const monthly = (principal*x*calculatedInterest)/(x-1);
+
+    if (isFinite(monthly)) {
+        montlyPayment.value = monthly.toFixed(2);
+        totalPayment.value = (monthly*calculatedPayments).toFixed(2);
+        totalInterest.value = ((monthly*calculatedPayments) - principal).toFixed(2);
+
+        // Show results
+        document.getElementById('results').style.display = 'block';
+        // Hide loader
+        document.getElementById('loading').style.display = 'none';
+    } else {
+        showError('Please Check your Numbers');
+    }
+
+    e.preventDefault();
 }
