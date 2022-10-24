@@ -7,4 +7,4 @@ document.getElementById('loan-form').addEventListener('submit', function(e){
 
     setTimeout(calculateResults, 2000);
     e.preventDefault();
-})
+});
